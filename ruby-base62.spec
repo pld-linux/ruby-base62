@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	tests		# build without tests
+
 %define	pkgname	base62
 Summary:	module that monkeypatches Integer and String to add Base62 encoder
 Name:		ruby-%{pkgname}
@@ -21,6 +25,11 @@ string and turn it back into a valid integer.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
+
+%build
+%if %{with tests}
+testrb -Ilib test/test_*.rb
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
