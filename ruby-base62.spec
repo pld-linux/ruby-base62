@@ -6,7 +6,7 @@
 Summary:	module that monkeypatches Integer and String to add Base62 encoder
 Name:		ruby-%{pkgname}
 Version:	0.1.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
