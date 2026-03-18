@@ -5,15 +5,16 @@
 %define	pkgname	base62
 Summary:	module that monkeypatches Integer and String to add Base62 encoder
 Name:		ruby-%{pkgname}
-Version:	0.1.4
+Version:	1.0.0
 Release:	2
 License:	MIT
 Group:		Development/Languages
-Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	0aec615988ddc6b5ba837c049ee4d95c
-URL:		http://github.com/jtzemp/base62
+Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	9848bfe0975daad5e17d5042506c1e85
+URL:		https://github.com/jtzemp/base62
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
+BuildRequires:	ruby-test-unit
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,7 +29,7 @@ string and turn it back into a valid integer.
 
 %build
 %if %{with tests}
-testrb -Ilib test/test_*.rb
+ruby -Ilib -Itest -e 'require "rubygems"; require "test/unit"; require "base62_test"'
 %endif
 
 %install
@@ -41,6 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.rdoc History.txt
+%doc README.md CHANGELOG.md
 %{ruby_vendorlibdir}/%{pkgname}.rb
 %{ruby_vendorlibdir}/%{pkgname}
