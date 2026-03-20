@@ -29,7 +29,7 @@ string and turn it back into a valid integer.
 
 %build
 %if %{with tests}
-ruby -Ilib -Itest -e 'require "rubygems"; require "test/unit"; require "base62_test"'
+%{__ruby} -Ilib -Itest -e 'require "rubygems"; require "test/unit"; require "base62_test"'
 %endif
 
 %install
